@@ -7,7 +7,7 @@ A [Directed Acyclic Graph (DAG)](../Data%20Structures%20&%20Algorithms/Data%20St
 
 Here’s a basic example DAG:
 
-![](Attachments/Screenshot_DAG.png)
+![](../Attachments/Screenshot_DAG.png)
 
 It defines four Tasks - A, B, C, and D - and dictates the order in which they have to run, and which tasks depend on what others. It will also say how often to run the DAG - maybe “every 5 minutes starting tomorrow”, or “every day since January 1st, 2020”.
 
@@ -281,7 +281,7 @@ The possible states for a Task Instance are:
 
 * `removed`: The task has vanished from the DAG since the run started
 
-![](Attachments/Screenshot_Task.png)
+![](../Attachments/Screenshot_Task.png)
 
 Ideally, a task should flow from `none`, to `scheduled`, to `queued`, to `running`, and finally to `success`.
 
