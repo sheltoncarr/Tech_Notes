@@ -1,12 +1,13 @@
 *Orchestration* of tasks is critical in software, especially in data engineering and [Machine Learning](../Machine%20Learning/ML%20Engineering/Preprocessing.md). *Airflow* is the most popular open source orchestration software used largely to orchestrate data transformations and other actions in a [Directed Acyclic Graph (DAG)](../Data%20Structures%20&%20Algorithms/Data%20Structures/Graphs.md). By running everything in a DAG, we can ensure there are no cycles and tasks are completed in the order we want, preventing race conditions.
 
+
 ## DAGs
 
 A [Directed Acyclic Graph (DAG)](../Data%20Structures%20&%20Algorithms/Data%20Structures/Graphs.md) is the core concept of Airflow, collecting Tasks together, organized with dependencies and relationships to say how they should run.
 
 Here’s a basic example DAG:
 
-![](../Attachments/Screenshot%2024-08-17%at%5.42.55%PM.png)
+![](../Attachments/Screenshot%202024-08-17%20at%205.42.55%20PM.png)
 
 It defines four Tasks - A, B, C, and D - and dictates the order in which they have to run, and which tasks depend on what others. It will also say how often to run the DAG - maybe “every 5 minutes starting tomorrow”, or “every day since January 1st, 2020”.
 
@@ -208,6 +209,7 @@ There are two possible terminal states for the DAG Run:
 
 * `failed` if any of the leaf nodes state is either `failed` or `upstream_failed`.
 
+
 ## Tasks
 
 A Task is the basic unit of execution in Airflow. Tasks are arranged into DAGs, and then have upstream and downstream dependencies set between them in order to express the order they should run in.
@@ -279,11 +281,12 @@ The possible states for a Task Instance are:
 
 * `removed`: The task has vanished from the DAG since the run started
 
-![](../Attachments/Screenshot%2024-08-17%at%6.16.51%PM.png)
+![](../Attachments/Screenshot%202024-08-17%20at%206.16.51%20PM.png)
 
 Ideally, a task should flow from `none`, to `scheduled`, to `queued`, to `running`, and finally to `success`.
 
 When any custom Task (Operator) is running, it will get a copy of the task instance passed to it; as well as being able to inspect task metadata, it also contains methods for things like XComs.
+
 
 ## Operators
 
@@ -344,6 +347,7 @@ Because they are primarily idle, Sensors have two different modes of running so 
 The `poke` and `reschedule` modes can be configured directly when you instantiate the sensor; generally, the trade-off between them is latency. Something that is checking every second should be in `poke` mode, while something that is checking every minute should be in `reschedule` mode.
 
 Much like Operators, Airflow has a large set of pre-built Sensors you can use, both in core Airflow as well as the providers system.
+
 
 ## TaskFlow
 
